@@ -1,9 +1,24 @@
-import React from 'react'
+import About from "@/components/About/About";
+import Landing from "@/components/Landing/Landing";
+import NavBar from "@/components/Navbar/NavBar";
+import Head from "next/head";
 
-const Home = () => {
+export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <>
+      <Head>
+        <title>My FitBud</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NavBar />
+      <main className="relative pt-12 max-w-[1240px] mx-auto">
+        <section className="max-w-[1240px] mx-auto flex items-center sm:items-center justify-center md:h-screen">
+          <Landing />
+        </section>
+        <section className="max-w-[1240px] mx-auto flex items-center sm:items-center justify-center md:h-screen">
+          <About />
+         </section>
+      </main>
+    </>
+  );
 }
-
-export default Home
