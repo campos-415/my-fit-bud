@@ -12,15 +12,15 @@ const NavBar = () => {
         </h1>
         </div>
         
-        <ul className="hidden sm:flex items-center gap-3 text-lg font-semibold">
+        <ul className="hidden sm:flex items-center gap-3 text-lg font-semibold mx-2">
           <Link href="/">
             <li className="hover:text-specialColor">Home</li>
           </Link>{" "}
-          <Link href="/#about">
-            <li className="hover:text-specialColor">About</li>
+          <Link href="/workouts">
+            <li className="hover:text-specialColor">Workouts</li>
           </Link>
-          <Link href="/#contact">
-            <li className="hover:text-specialColor">Contact</li>
+          <Link href="/logiin">
+            <li className="hover:text-specialColor">Login</li>
           </Link>
         </ul>
       </nav>
