@@ -98,6 +98,8 @@ const workouts = () => {
      toggleLocationActive(active, id);
    }
  };
+  
+  ;
 
   return (
     <>
