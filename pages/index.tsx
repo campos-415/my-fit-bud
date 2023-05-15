@@ -1,5 +1,4 @@
 import Landing from "@/components/Landing/Landing";
-import NavBar from "@/components/Navbar/NavBar";
 import Head from "next/head";
 
 export default function Home() {

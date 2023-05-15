@@ -48,7 +48,7 @@ const Landing = () => {
               />
             </div>
           </div>
-          <div className="hover:shadow-lg hover:shadow-specialColor hover:cursor-pointer rounded-md mx-12 md:mx-0">
+          <div className="shadow-lg shadow-specialColor hover:cursor-pointer rounded-md mx-12 md:mx-0">
             <Image
               src={bgImg}
               width={600}
@@ -70,7 +70,7 @@ const Landing = () => {
           />
         </div>
         <div className="my-12  hover:scale-105 active:scale-95 ">
-          <Link className="py-4 px-8 rounded-md bg-specialColor" href={""} onClick={handleClick}>
+          <Link className="py-4 px-8 rounded-md bg-specialColor" href={'/workouts'} >
             Get Started
           </Link>
         </div>
