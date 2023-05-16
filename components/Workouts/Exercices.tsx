@@ -29,7 +29,8 @@ const Exercices = ({
         equipment: `${equipment}`,
       },
       headers: {
-        "X-RapidAPI-Key": "707b32fad2mshc384f1c4790c3e8p110ffbjsnfe4e85cc70ac",
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RapidAPI_KEY,
+
         "X-RapidAPI-Host": "workout-planner1.p.rapidapi.com",
       },
     };
