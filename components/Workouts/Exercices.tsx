@@ -13,7 +13,7 @@ const Exercices = ({
   const [workoutSets, setWorkoutSets] = useState<any>([]);
 
   const getExerciseList = async (
-    time: string,
+    time: {},
     muscle: [],
     location: string,
     equipment: string
@@ -37,6 +37,7 @@ const Exercices = ({
     try {
       const response = await axios.request(options);
       setWorkoutSets(response.data);
+      console.log(response.data)
       setLoading(false);
     } catch (error: any) {
       setLoading(true);
@@ -46,203 +47,122 @@ const Exercices = ({
 
   return (
     <>
-      <div className="mx-auto flex items-center  flex-col">
+      <div className="mx-auto flex items-center gap-3 flex-col">
         <button
-          className=" flex items-center justify-evenly text-sm py-2 px-4 hover:text-white rounded-full w-48 mx-auto bg-specialColor text-white"
+          className={` ${
+            loading ? "bg-specialColor/60 cursor-not-allowed" : "bg-specialColor"
+          } flex items-center justify-evenly hover:bg-specialColor/80 hover:scale-105 active:scale-95 transition-all duration-300 bg-specialColor text-sm py-2 px-4 hover:text-white rounded-md font-bold mx-auto  text-white`}
           onClick={() => getExerciseList(time, muscle, location, equipment)}>
           {!loading ? (
             "Generate Exercise List"
           ) : (
             <>
               Creating List
-                <span className="block">
-                  {" "}
-                  <CgSpinner size={20} className="inline animate-spin" />
-                </span>
+              <span className="ml-6 block">
+                {" "}
+                <CgSpinner size={20} className="inline animate-spin" />
+              </span>
             </>
           )}
         </button>
-
-        
-        <div>
-          <h1 className="text-3xl text-center">{muscle.join(" & ")}</h1>
-          <div className="flex items-start flex-wrap justify-betweend">
-            <div className=" flex items-start flex-col justify-between flex-wrap">
-              <h2 className="text-xl text-center text-specialColor">Warm Ups</h2>
+        <div className="">
+          <table className="w-full max-w-lg bg-slate-600 shadow-md rounded-lg overflow-hidden">
+            <thead className="bg-specialColor">
+              <tr>
+                <th className="py-2 px-4 border-b border-specialColor">
+                  Section
+                </th>
+                <th className="py-2 px-4 border-b border-specialColor">
+                  Exercise
+                </th>
+                <th className="py-2 px-4 border-b border-specialColor">
+                  Time/Reps
+                </th>
+                <th className="py-2 px-4 border-b border-specialColor">Sets</th>
+              </tr>
+            </thead>
+            <tbody>
               {!loading ? (
-                <div>
+                <>
                   {workoutSets?.["Warm Up"]?.map(
-                    (Exercise: any, index: number) => (
-                      <div
-                        className="flex flex-col items-start justify-center "
-                        key={index}>
-                        <p>
-                          {" "}
-                          <span className="text-slate-600">Exercise:</span>{" "}
-                          {Exercise.Exercise}
-                        </p>
-                        <p>
-                          {" "}
-                          <span className="text-slate-600">Time: </span>{" "}
-                          {Exercise.Time}
-                        </p>
-                      </div>
+                    (warmUp: any, index: number) => (
+                      <tr key={index}>
+                        {index === 0 && (
+                          <td
+                            className="py-2 px-4 border-b border-gray-200"
+                            rowSpan={workoutSets?.["Warm Up"]?.length}>
+                            Warm Ups
+                          </td>
+                        )}
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {warmUp.Exercise}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {warmUp.Time}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-200"></td>
+                      </tr>
                     )
                   )}
-                </div>
-              ) : (
-                <>
-                  <div className="flex items-center  justify-center">
-                    {" "}
-                    <CgSpinner size={50} className="block animate-spin" />
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="flex items-start justify-between flex-col">
-              <h2 className="text-xl text-specialColor">Exercises</h2>
-              {!loading ? (
-                <>
-                  {workoutSets?.Exercises?.map(
-                    (Exercise: any, index: number) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-start flex-wrap justify-center ">
-                        <p>
-                          <span className="text-slate-600">Exercise: </span>{" "}
-                          {Exercise.Exercise}
-                        </p>
-                        <p>
-                          <span className="text-slate-600">Reps: </span>
-                          {Exercise.Reps}
-                        </p>
-                        <p>
-                          <span className="text-slate-600">Sets: </span>
-                          {Exercise.Sets}
-                        </p>
-                      </div>
-                    )
-                  )}
-                </>
-              ) : (
-                <>
-                  <div className="flex items-center justify-center">
-                    {" "}
-                    <CgSpinner size={50} className="block animate-spin" />
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="flex items-start justify-between flex-col">
-              <h2 className="text-xl text-specialColor">Cool Downs</h2>
-              {!loading ? (
-                <>
-                  {workoutSets?.["Cool Down"]?.map(
-                    (Exercise: any, index: number) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-start justify-center">
-                        <p>
-                          <span className="text-slate-600">Exercise:</span>{" "}
-                          {Exercise.Exercise}
-                        </p>
-                        <p>
-                          {" "}
-                          <span className="text-slate-600">Time:</span>{" "}
-                          {Exercise.Time}
-                        </p>
-                      </div>
-                    )
-                  )}
-                </>
-              ) : (
-                <>
-                  <div className="">
-                    {" "}
-                    <CgSpinner size={50} className="block animate-spin" />
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
 
-        {/* {!loading ? (
-          <>
-            <h1 className="text-3xl text-center">{muscle.join(" & ")}</h1>
-            <div className="flex flex-warp items-start justify-center gap-24">
-              <div className=" flex items-start flex-col justify-between flex-wrap">
-                <h2 className="text-xl text-specialColor">Warm Ups</h2>
-                {workoutSets?.["Warm Up"]?.map(
-                  (Exercise: any, index: number) => (
-                    <div
-                      className="flex flex-col items-start justify-center "
-                      key={index}>
-                      <p>
-                        {" "}
-                        <span className="text-slate-600">Exercise:</span>{" "}
-                        {Exercise.Exercise}
-                      </p>
-                      <p>
-                        {" "}
-                        <span className="text-slate-600">Time: </span>{" "}
-                        {Exercise.Time}
-                      </p>
+                  {workoutSets?.["Exercises"]?.map(
+                    (exercise: any, index: number) => (
+                      <tr key={index}>
+                        {index === 0 && (
+                          <td
+                            className="py-2 px-4 border-b border-gray-200"
+                            rowSpan={workoutSets?.["Exercises"]?.length}>
+                            Exercises
+                          </td>
+                        )}
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {exercise.Exercise}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {exercise.Reps}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {exercise.Sets}
+                        </td>
+                      </tr>
+                    )
+                  )}
+
+                  {workoutSets?.["Cool Down"]?.map(
+                    (coolDown: any, index: number) => (
+                      <tr key={index}>
+                        {index === 0 && (
+                          <td
+                            className="py-2 px-4 border-b border-gray-200"
+                            rowSpan={workoutSets?.["Cool Down"]?.length}>
+                            Cool Down
+                          </td>
+                        )}
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {coolDown.Exercise}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-200">
+                          {coolDown.Time}
+                        </td>
+                        <td className="py-2 px-4 border-b border-gray-200"></td>
+                      </tr>
+                    )
+                  )}
+                </>
+              ) : (
+                <tr>
+                  <td
+                    className="py-2 px-4 border-b border-gray-200"
+                    colSpan={4}>
+                    <div className="flex items-center justify-center">
+                      <CgSpinner size={50} className="block animate-spin" />
                     </div>
-                  )
-                )}
-              </div>
-              <div className="flex items-start justify-between flex-col">
-                <h2 className="text-xl text-specialColor">Exercises</h2>
-                {workoutSets?.Exercises?.map((Exercise: any, index: number) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-start flex-wrap justify-center ">
-                    <p>
-                      <span className="text-slate-600">Exercise: </span>{" "}
-                      {Exercise.Exercise}
-                    </p>
-                    <p>
-                      <span className="text-slate-600">Reps: </span>
-                      {Exercise.Reps}
-                    </p>
-                    <p>
-                      <span className="text-slate-600">Sets: </span>
-                      {Exercise.Sets}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-start justify-between flex-col">
-                <h2 className="text-xl text-specialColor">Cool Downs</h2>
-                {workoutSets?.["Cool Down"]?.map(
-                  (Exercise: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex flex-col items-start justify-center">
-                      <p>
-                        <span className="text-slate-600">Exercise:</span>{" "}
-                        {Exercise.Exercise}
-                      </p>
-                      <p>
-                        {" "}
-                        <span className="text-slate-600">Time:</span>{" "}
-                        {Exercise.Time}
-                      </p>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="flex items-center pt-48 justify-center">
-              {" "}
-              <CgSpinner size={50} className="block animate-spin" />
-            </div>
-          </>
-        )} */}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

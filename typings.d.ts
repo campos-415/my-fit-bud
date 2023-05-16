@@ -28,7 +28,7 @@ export interface CoolDown {
 }
 
 export interface ExerciseListProps {
-  time: string;
+  time: {};
   muscle: [];
   location: string;
   equipment: string;

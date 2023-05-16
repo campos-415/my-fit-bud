@@ -3,16 +3,13 @@ import React from "react";
 import bgImg from "/public/assets/bg-img.jpeg";
 import trustedBrands from "/public/assets/customers-logo-strip.png";
 import Services from "./Services";
-import { BsSearch } from "react-icons/bs";
+import { BsRobot } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { TiCloudStorage } from "react-icons/ti";
 import Link from "next/link";
 
 
 const Landing = () => {
-  const handleClick = (e:any) => {
-    e.preventDefault();
-  }
   return (
     <>
       <div className="flex items-center justify-center flex-col relative">
@@ -26,7 +23,7 @@ const Landing = () => {
                 </span>
               </h1>
               <p className="text-lg max-w-[75%] text-center">
-                MyFitBud is a platform that allows you to search and storage
+                MyFitBud is a platform that allows you generate and storage
                 workouts.
               </p>
             </div>
@@ -37,9 +34,9 @@ const Landing = () => {
                 icon={<BiUser size={35} />}
               />
               <Services
-                title="Search"
-                text="Search for any specific workouts based on muscles or exercises."
-                icon={<BsSearch size={35} />}
+                title="Generate"
+                text="Generate workouts based on muscles using AI"
+                icon={<BsRobot size={35} />}
               />
               <Services
                 title="Storage"

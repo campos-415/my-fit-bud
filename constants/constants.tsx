@@ -199,3 +199,35 @@ export const LocationsName = [
   },
 ]
 
+export const Time = [
+  {
+    active: false,
+    durationId: 0,
+    durationTime: 30,
+  },
+  {
+    active: false,
+    durationId: 1,
+    durationTime: 45,
+  },
+  {
+    active: false,
+    durationId: 2,
+    durationTime: 60,
+  },
+  {
+    active: false,
+    durationId: 3,
+    durationTime: 75,
+  },
+  {
+    active: false,
+    durationId: 4,
+    durationTime: 90,
+  },
+  {
+    active: false,
+    durationId: 5,
+    durationTime: 120,
+  },
+]
