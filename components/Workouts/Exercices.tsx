@@ -11,6 +11,7 @@ const Exercices = ({
 }: ExerciseListProps) => {
   const [loading, setLoading] = useState(false);
   const [workoutSets, setWorkoutSets] = useState<any>([]);
+  const [errors, setErrors] = useState("");
 
   const getExerciseList = async (
     time: {},
@@ -29,7 +30,7 @@ const Exercices = ({
         equipment: `${equipment}`,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RapidAPI_KEY,
+        "X-RapidAPI-Key": "707b32fad2mshc384f1c4790c3e8p110ffbjsnfe4e85cc70ac",
 
         "X-RapidAPI-Host": "workout-planner1.p.rapidapi.com",
       },
@@ -38,10 +39,11 @@ const Exercices = ({
     try {
       const response = await axios.request(options);
       setWorkoutSets(response.data);
-      console.log(response.data)
+      console.log(response.data);
       setLoading(false);
     } catch (error: any) {
-      setLoading(true);
+      console.log(error.message);
+      setErrors(error.message);
       return null;
     }
   };
@@ -51,18 +53,25 @@ const Exercices = ({
       <div className="mx-auto flex items-center gap-3 flex-col">
         <button
           className={` ${
-            loading ? "bg-specialColor/60 cursor-not-allowed" : "bg-specialColor"
+            loading
+              ? "bg-specialColor/60 cursor-not-allowed"
+              : "bg-specialColor"
           } flex items-center justify-evenly hover:bg-specialColor/80 hover:scale-105 active:scale-95 transition-all duration-300 bg-specialColor text-sm py-2 px-4 hover:text-white rounded-md font-bold mx-auto  text-white`}
           onClick={() => getExerciseList(time, muscle, location, equipment)}>
           {!loading ? (
             "Generate Exercise List"
           ) : (
             <>
-              Creating List
-              <span className="ml-6 block">
-                {" "}
-                <CgSpinner size={20} className="inline animate-spin" />
-              </span>
+                {errors.length === 0 ? (
+                  <>
+                    Creating List...
+                <span className="ml-6 block">
+                  <CgSpinner size={20} className="inline animate-spin" />
+                    </span>
+                    </>
+              ) : (
+                <h2>Try Again </h2>
+              )}
             </>
           )}
         </button>
@@ -83,7 +92,7 @@ const Exercices = ({
               </tr>
             </thead>
             <tbody>
-              {!loading ? (
+              {loading ? (
                 <>
                   {workoutSets?.["Warm Up"]?.map(
                     (warmUp: any, index: number) => (
@@ -151,15 +160,26 @@ const Exercices = ({
                   )}
                 </>
               ) : (
-                <tr>
-                  <td
-                    className="py-2 px-4 border-b border-gray-200"
-                    colSpan={4}>
-                    <div className="flex items-center justify-center">
-                      <CgSpinner size={50} className="block animate-spin" />
-                    </div>
-                  </td>
-                </tr>
+                <>
+                  {errors.length !== 0 ? (
+                    <tr>
+                      <td
+                        className="py-2 px-4 border-b border-gray-200"
+                        colSpan={4}>
+                        <div className="flex items-center justify-center">
+                          <CgSpinner size={50} className="block animate-spin" />
+                        </div>
+                      </td>
+                    </tr>
+                    ) : (
+                        <tr>
+                          <td>
+                          </td>
+                          <td className="flex flex-col items-center justify-center text-center w-32">
+                            <span className="text-red-500">Our servers are at capacity at the moment </span> Please Try Again Later</td>
+                        </tr>
+                  )}
+                </>
               )}
             </tbody>
           </table>
