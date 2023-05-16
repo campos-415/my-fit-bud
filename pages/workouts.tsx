@@ -116,7 +116,6 @@ const workouts = () => {
     <>
       <div className="flex-col flex lg:flex-row items-center justify-center lg:items-start gap-12 lg:justify-between mx-auto max-w-[1240px] pt-12">
         <div className="lg:w-1/3">
-        
           <div className="space-y-2">
             <h2 className="text-lg font-bold">Select Location</h2>
             <div className="grid grid-cols-3 gap-2 flex-wrap max-w-full mx-auto pb-4 ">
@@ -183,12 +182,18 @@ const workouts = () => {
           </div>
         </div>
         <div className="lg:w-1/3">
-          <Exercices
-            time={selectedTime}
-            muscle={selectedMusclesByName}
-            location={selectedLocationByName}
-            equipment="all"
-          />
+          {selectedMusclesByName.length === 0 &&
+            selectedLocationByName.length === 0 && 
+          selectedTime.length === 0  ? (
+            <h2 className="text-2xl font-bold text-center">Please select a location, muscle(s) and duration to begin</h2>
+          ) : (
+            <Exercices
+              time={selectedTime}
+              muscle={selectedMusclesByName}
+              location={selectedLocationByName}
+              equipment="all"
+            />
+          )}
         </div>
         <div className=" flex items-center justify-between mx-auto lg:w-1/3">
           <MuscleGroupImage muscleGroups={selectedMusclesBySlug} />

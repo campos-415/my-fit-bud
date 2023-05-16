@@ -92,7 +92,7 @@ const Exercices = ({
               </tr>
             </thead>
             <tbody>
-              {loading ? (
+              {!loading ? (
                 <>
                   {workoutSets?.["Warm Up"]?.map(
                     (warmUp: any, index: number) => (
@@ -161,7 +161,7 @@ const Exercices = ({
                 </>
               ) : (
                 <>
-                  {errors.length !== 0 ? (
+                  {errors.length === 0 ? (
                     <tr>
                       <td
                         className="py-2 px-4 border-b border-gray-200"
