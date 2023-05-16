@@ -30,7 +30,7 @@ const Landing = () => {
             <div className="flex flex-col md:flex-row my-12 gap-6 items-center justify-center w-full h-[100%]">
               <Services
                 title="Account"
-                text="Access your workouts. from anywhere."
+                text="Access your workouts. from anywhere.  (Coming Soon)"
                 icon={<BiUser size={35} />}
               />
               <Services
@@ -40,7 +40,7 @@ const Landing = () => {
               />
               <Services
                 title="Storage"
-                text="Storage your workouts for easier access."
+                text="Storage your workouts for easier access. (Coming Soon)"
                 icon={<TiCloudStorage size={35} />}
               />
             </div>
@@ -67,7 +67,9 @@ const Landing = () => {
           />
         </div>
         <div className="my-12  hover:scale-105 active:scale-95 ">
-          <Link className="py-4 px-8 rounded-md bg-specialColor" href={'/workouts'} >
+          <Link
+            className="py-4 px-8 rounded-md bg-specialColor"
+            href={"/workouts"}>
             Get Started
           </Link>
         </div>

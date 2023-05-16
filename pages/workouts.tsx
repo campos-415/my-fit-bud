@@ -140,7 +140,7 @@ const workouts = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="text-lg font-bold">Select Muscle</h2>
+            <h2 className="text-lg font-bold">Select Muscles</h2>
             <div className={`grid max-w-full gap-1 grid-cols-3 pb-4`}>
               {muscles.map((muscle: any) => (
                 <MuscleNameButton
