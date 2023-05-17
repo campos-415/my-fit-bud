@@ -182,8 +182,8 @@ const workouts = () => {
           </div>
         </div>
         <div className="lg:w-1/3">
-          {selectedMusclesByName.length === 0 &&
-            selectedLocationByName.length === 0 && 
+          {selectedMusclesByName.length === 0 ||
+            selectedLocationByName.length === 0 || 
           selectedTime.length === 0  ? (
             <h2 className="text-2xl font-bold text-center">Please select a location, muscle(s) and duration to begin</h2>
           ) : (
