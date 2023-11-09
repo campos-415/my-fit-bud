@@ -62,128 +62,126 @@ const Exercices = ({
             "Generate Exercise List"
           ) : (
             <>
-                {errors.length === 0 ? (
-                  <>
-                    Creating List...
-                <span className="ml-6 block">
-                  <CgSpinner size={20} className="inline animate-spin" />
-                    </span>
-                    </>
+              {errors.length === 0 ? (
+                <>
+                  Creating List...
+                  <span className="ml-6 block">
+                    <CgSpinner size={20} className="inline animate-spin" />
+                  </span>
+                </>
               ) : (
                 <h2>Try Again </h2>
               )}
             </>
           )}
         </button>
-        <div className="">
-          <table className="w-full max-w-lg bg-slate-600 shadow-md rounded-lg overflow-hidden">
-            <thead className="bg-specialColor">
-              <tr>
-                <th className="py-2 px-4 border-b border-specialColor">
-                  Section
-                </th>
-                <th className="py-2 px-4 border-b border-specialColor">
-                  Exercise
-                </th>
-                <th className="py-2 px-4 border-b border-specialColor">
-                  Time/Reps
-                </th>
-                <th className="py-2 px-4 border-b border-specialColor">Sets</th>
-              </tr>
-            </thead>
-            <tbody>
-              {!loading ? (
-                <>
-                  {workoutSets?.["Warm Up"]?.map(
-                    (warmUp: any, index: number) => (
-                      <tr key={index}>
-                        {index === 0 && (
-                          <td
-                            className="py-2 px-4 border-b border-gray-200"
-                            rowSpan={workoutSets?.["Warm Up"]?.length}>
-                            Warm Ups
-                          </td>
-                        )}
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {warmUp.Exercise}
-                        </td>
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {warmUp.Time}
-                        </td>
-                        <td className="py-2 px-4 border-b border-gray-200"></td>
-                      </tr>
-                    )
-                  )}
+        
 
-                  {workoutSets?.["Exercises"]?.map(
-                    (exercise: any, index: number) => (
-                      <tr key={index}>
-                        {index === 0 && (
-                          <td
-                            className="py-2 px-4 border-b border-gray-200"
-                            rowSpan={workoutSets?.["Exercises"]?.length}>
-                            Exercises
-                          </td>
-                        )}
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {exercise.Exercise}
-                        </td>
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {exercise.Reps}
-                        </td>
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {exercise.Sets}
-                        </td>
-                      </tr>
-                    )
-                  )}
-
-                  {workoutSets?.["Cool Down"]?.map(
-                    (coolDown: any, index: number) => (
-                      <tr key={index}>
-                        {index === 0 && (
-                          <td
-                            className="py-2 px-4 border-b border-gray-200"
-                            rowSpan={workoutSets?.["Cool Down"]?.length}>
-                            Cool Down
-                          </td>
-                        )}
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {coolDown.Exercise}
-                        </td>
-                        <td className="py-2 px-4 border-b border-gray-200">
-                          {coolDown.Time}
-                        </td>
-                        <td className="py-2 px-4 border-b border-gray-200"></td>
-                      </tr>
-                    )
-                  )}
-                </>
-              ) : (
-                <>
-                  {errors.length === 0 ? (
-                    <tr>
+        <table className="w-full max-w-lg bg-gray-800 text-white rounded-lg overflow-hidden">
+          <thead className="bg-specialColor">
+            <tr>
+              <th className="py-2 px-4 border-b border-specialColor">
+                Section
+              </th>
+              <th className="py-2 px-4 border-b border-specialColor">
+                Exercise
+              </th>
+              <th className="py-2 px-4 border-b border-specialColor">
+                Time/Reps
+              </th>
+              <th className="py-2 px-4 border-b border-specialColor">Sets</th>
+            </tr>
+          </thead>
+          <tbody>
+            {!loading ? (
+              <>
+                {workoutSets?.["Warm Up"]?.map((warmUp: any, index: number) => (
+                  <tr key={index} className="border-b border-l border-gray-700">
+                    {index === 0 && (
                       <td
-                        className="py-2 px-4 border-b border-gray-200"
-                        colSpan={4}>
-                        <div className="flex items-center justify-center">
-                          <CgSpinner size={50} className="block animate-spin" />
-                        </div>
+                        className="py-2 px-4"
+                        rowSpan={workoutSets?.["Warm Up"]?.length}>
+                        <span className="text-specialColor font-bold">
+                          Warm Ups
+                        </span>
                       </td>
+                    )}
+                    <td className="py-2 px-4">{warmUp.Exercise}</td>
+                    <td className="py-2 px-4">{warmUp.Time}</td>
+                    <td className="py-2 px-4 border-r border-gray-700"></td>
+                  </tr>
+                ))}
+
+                {workoutSets?.["Exercises"]?.map(
+                  (exercise: any, index: number) => (
+                    <tr
+                      key={index}
+                      className="border-b border-l border-gray-700">
+                      {index === 0 && (
+                        <td
+                          className="py-2 px-4"
+                          rowSpan={workoutSets?.["Exercises"]?.length}>
+                          <span className="text-specialColor font-bold">
+                            Exercises
+                          </span>
+                        </td>
+                      )}
+                      <td className="py-2 px-4">{exercise.Exercise}</td>
+                      <td className="py-2 px-4">{exercise.Reps}</td>
+                      <td className="py-2 px-4">{exercise.Sets}</td>
                     </tr>
-                    ) : (
-                        <tr>
-                          <td>
-                          </td>
-                          <td className="flex flex-col items-center justify-center text-center w-32">
-                            <span className="text-red-500">Our servers are at capacity at the moment </span> Please Try Again Later</td>
-                        </tr>
-                  )}
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
+                  )
+                )}
+
+                {workoutSets?.["Cool Down"]?.map(
+                  (coolDown: any, index: number) => (
+                    <tr
+                      key={index}
+                      className="border-b border-l border-gray-700">
+                      {index === 0 && (
+                        <td
+                          className="py-2 px-4"
+                          rowSpan={workoutSets?.["Cool Down"]?.length}>
+                          <span className="text-specialColor font-bold">
+                            Cool Down
+                          </span>
+                        </td>
+                      )}
+                      <td className="py-2 px-4">{coolDown.Exercise}</td>
+                      <td className="py-2 px-4">{coolDown.Time}</td>
+                      <td className="py-2 px-4"></td>
+                    </tr>
+                  )
+                )}
+              </>
+            ) : (
+              <>
+                {errors.length === 0 ? (
+                  <tr>
+                    <td className="py-2 px-4" colSpan={4}>
+                      <div className="flex items-center justify-center">
+                        <CgSpinner
+                          size={60}
+                          className="text-specialColor block animate-spin"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td></td>
+                    <td className="flex flex-col items-center justify-center text-center w-32">
+                      <span className="text-red-500">
+                        Our servers are at capacity at the moment
+                      </span>{" "}
+                      Please Try Again Later
+                    </td>
+                  </tr>
+                )}
+              </>
+            )}
+          </tbody>
+        </table>
       </div>
     </>
   );

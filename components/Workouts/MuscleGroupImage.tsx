@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import bodyImg from "/public/assets/bodyImg.png";
-import { group } from "console";
 
 interface MuscleGroupImageProps {
   muscleGroups: Array<string>;
